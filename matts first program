@@ -1,0 +1,29 @@
+import string
+
+def password_checker(password):
+    if not len(password) <= 14:
+        return False 
+     
+    if not any(string.ascii_uppercase for char in password):
+        return False
+    if not any(string.ascii_lowercase for char in password):
+        return False
+    if not any(string.digits for char in password):
+        return False
+    if not any(string.punctuation for char in password):
+        return False
+
+ #turn password into type strings than reject strings with over 3 consective repetition 
+ #so AAAAbbbb1234!@#$ becomes 0000111122223333 and is therefore rejected
+   
+types = ""
+    if char.isupper():
+        types += "0"
+    if char.islower:
+        types += "1"
+    if char.isdigit:
+        types += "2"
+    if char.isalnum():
+        types += "3"
+if "0000"in types or "1111"in types or "2222" in types or "3333"in types:
+        return False 
