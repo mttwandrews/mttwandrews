@@ -1,0 +1,78 @@
+import random
+import sys
+
+
+names =["Batman","Robin","Joker","Riddler", "Bane", "Poison Ivy", "Batgirl"]
+weapons =  [ "Batarang", "Cane", "Laughing Gas", "guns", "Poisons","Bo", "Bat Darts" ]
+locations = ["Arkham Asylum","Wayne Manor", "Plant Factory", "Falcone Penthouse", "The Cauldron", "Ace Chemical"]
+cards = ["who tells riddles and makes a fuss when when ", "where in the city would one get chemicals from",
+        "you find a clue: Question Mark shaped Cane", "you found the first peice of a riddle clutched in Alfred cold rigor mortis hand"]
+
+answer = "{}, {}, {}".format(names[3], weapons[1],locations[5]) 
+
+clue_epilogue = """ 
+    this is clue: Batman addition
+    here are the rules: Someone killed afred; your job is to figure out who. 
+    Every turn you will get to pick a card with a clue 
+    solve the puzzle before the 3 clues run out and you LOSE"""
+weapons_catelog = """ 
+    Batarang, cane, Laughing Gas, guns, Poisons, Bo,Bat Darts """
+locations = """ 
+    Arkham Asylum, Wayne Manor, Plant Factory, Falcone Penthouse, The Cauldron, Ace Chemical."""
+answer_format = """ 
+    bad guy name, location of crime, and weapon of choice"""
+characters:"""  
+    Batman, Robin, Joker, Riddler, Bane, Poison Ivy, Batgirl"""
+
+    
+if len(sys.argv) == 1:
+        print("specify easy, medium, hard")
+
+if "-help" in sys.argv:
+     print(clue_epilogue, weapons_catelog, locations, answer_format, characters)
+
+dif = sys.argv[1]
+
+if dif == "easy":
+        x = 0
+if dif == "medium":
+        x = 1
+if dif == "hard":
+        x = 2
+
+
+def getCard():
+        if len(cards) > 0:
+            card = random.randint(0,len(cards)-1)
+            card = cards[card]
+            cards.remove(card)
+            return card
+    
+def guess(attempt):
+    
+        puzzle = str(input("Try to solve puzzle: "))
+        if puzzle.lower()  == answer.lower():
+            print("correct")
+            return 1
+           
+        else:
+            print("incorrect")
+           
+    
+print(getCard())
+x = 0
+while x < 3:
+    x = x + 1
+    
+    try:
+            if guess(x) == 1:
+                exit()
+            
+            else:
+                print(getCard())
+            
+    except KeyboardInterrupt:
+        x = x + 1
+        print("you may not exit")
+        pass
+    
